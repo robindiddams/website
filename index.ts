@@ -33,7 +33,10 @@ const server = Bun.serve({
 		"/": (req, srv) =>
 			new Response(
 				indexHTML({
-					IP: srv.requestIP(req)?.address ?? "UNDADRESSED",
+					IP:
+						req.headers.get("x-forwarded-for") ??
+						srv.requestIP(req)?.address ??
+						"UNDADRESSED",
 				}),
 				{
 					headers: {
