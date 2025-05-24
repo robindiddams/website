@@ -27,7 +27,9 @@ const indexHTML = (config: {
 
 // server.ts
 const server = Bun.serve({
-	port: 3000,
+	port: 1337,
+	// 1 hour
+	idleTimeout: 3600_000,
 	routes: {
 		"/": (req, srv) =>
 			new Response(
